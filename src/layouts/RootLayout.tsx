@@ -31,12 +31,6 @@ export const RootLayout = ({ children }: RootLayoutProps) => {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link to='/signup'>회원가입</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                   <Link to='/logout'>로그아웃</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
