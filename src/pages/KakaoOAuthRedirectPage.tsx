@@ -18,15 +18,12 @@ export const KakaoOAuthRedirectPage = () => {
               searchParams: { code },
               credentials: 'include',
             })
-            .then((res) => {
-              const token = res.headers.get('jwt');
-              if (token) {
-                localStorage.setItem('token', token);
-                navigate('/');
-              }
+            .then(() => {
+              navigate('/');
             });
         } catch (error) {
           console.error(error);
+          navigate('/login');
         }
       }
     };
