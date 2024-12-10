@@ -16,6 +16,7 @@ export const KakaoOAuthRedirectPage = () => {
           await ky
             .get(`${BACKEND_URL}/login/kakao`, {
               searchParams: { code },
+              credentials: 'include',
             })
             .then((res) => {
               const token = res.headers.get('jwt');
