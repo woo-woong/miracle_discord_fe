@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ky from 'ky';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 export const KakaoOAuthRedirectPage = () => {
   const navigate = useNavigate();
@@ -14,18 +14,16 @@ export const KakaoOAuthRedirectPage = () => {
       if (code) {
         try {
           await ky
-            .get(`${BACKEND_URL}/login/kakao`, {
+            .get(`${BACKEND_API_URL}/login/kakao`, {
               searchParams: { code },
+              credentials: 'include',
             })
-            .then((res) => {
-              const token = res.headers.get('jwt');
-              if (token) {
-                localStorage.setItem('token', token);
-                navigate('/');
-              }
+            .then(() => {
+              navigate('/');
             });
         } catch (error) {
           console.error(error);
+          navigate('/login');
         }
       }
     };
